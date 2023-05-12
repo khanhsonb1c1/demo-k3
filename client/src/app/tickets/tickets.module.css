@@ -1,2 +1,52 @@
 .tickets {
+    color: red;
 }
+
+.title {
+    color: blue;
+    text-transform: uppercase;
+    margin: 2rem 0 0 0;
+    
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.label_success{
+    display: inline;
+    padding: 0.25em 0.75em;
+    font-size: 0.8em;
+    border-radius: 0.8em;
+    color: #fff;
+    background-color: #28A745;
+}
+
+.label_danger{
+    display: inline;
+    padding: 0.25em 0.75em;
+    font-size: 0.8em;
+    border-radius: 0.8em;
+    color: #fff;
+    background-color: #DC3545;
+}
+
+.color_primary {
+    color: #0c1bf4;
+}
+
+.color_danger {
+    color: #F45050;
+}
+
