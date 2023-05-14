@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './app.module.css';
 import TheHeader from './components/TheHeader';
@@ -9,7 +8,9 @@ import TicketDetail from './tickets/TicketDetail';
 import Tickets from './tickets/tickets';
 
 const App = () => {
+  // bỏ vào store,
   const dispath = useDispatch();
+// hoặc sử dụng thư viện axios.
 
   const fetchUsers = async () => {
     // arrow function
@@ -21,9 +22,12 @@ const App = () => {
     fetchUsers();
   }, []);
 
+  // useEffect(()=> {}, [x])
+
   return (
     <div>
       <TheHeader />
+      <div id="toast"></div>
       <div className={styles['container']}>
         <Routes>
           <Route path="/" element={<Tickets />} />

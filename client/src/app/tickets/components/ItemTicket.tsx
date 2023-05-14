@@ -1,10 +1,23 @@
 import { Ticket, User } from '@acme/shared-models';
 import styles from '../tickets.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { updateTicket } from '../../store/ticket';
+import handleToast from '../functions/handleToast';
 
-function ItemTicket({ item }: { item: Ticket }) {
+function ItemTicket({
+  item,
+  index,
+}: {
+  item: Ticket;
+  index: number;
+}) {
+  // useSelector(): lấy từ store.
   const users = useSelector((state: any) => state.user.list);
+
+  const toast = handleToast()
+
+  const dispath = useDispatch();
 
   const getNameOfAssignee = () => {
     const x = users?.find((x: User) => {
@@ -14,12 +27,28 @@ function ItemTicket({ item }: { item: Ticket }) {
     return x ? x.name : '...';
   };
 
-  const handleDelete = () => {
-    //
+  const handleDelete = async () => {
+    await fetch(`/api/tickets/${item.id}/delete`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        fetchTickets()
+        const option = {title: "Deleted", message: "Delete successfully !", type: "success"}
+        toast({option})
+      })
+      .catch(() => {
+        const option = {title: "Deleted", message: "Delete fail !", type: "error"}
+        toast({option}) 
+      });
   };
+
+  const fetchTickets = async() => {
+    const data = await fetch('/api/tickets');
+    dispath(updateTicket(await data.json()));
+  }
   return (
     <tr>
-      <td>{}</td>
+      <td>{index + 1}</td>
       <td className="col-middle">
         <div className="text-center">
           <p

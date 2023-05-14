@@ -6,11 +6,11 @@ type PropsType = PropsWithChildren<{
 }>;
 
 function Modal({ children }: PropsType) {
-  const modal = document.querySelector('.modal') as Element;
+  // const modal = document.querySelector('.modal') as Element;
 
-  const toggleModal = () => {
-    modal.classList.toggle('hide');
-  };
+  // const toggleModal = () => {
+  //   modal.classList.toggle('hide');
+  // };
 
   return (
     <div>

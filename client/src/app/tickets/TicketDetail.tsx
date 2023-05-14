@@ -19,12 +19,10 @@ function TicketDetail() {
       await fetch(`/api/tickets/${id}/complete`, {
         method: 'PUT',
       }).then(() => {
-        //
-   
         fetchDetail();
       });
     } else {
-      await fetch(`/api/tickets/${id}/complete`, {
+      await fetch(`/api/tickets/${id}/delete`, {
         method: 'DELETE',
       }).then(() => {
         navigate("/")
@@ -88,9 +86,11 @@ function TicketDetail() {
             value={ticket.assigneeId || ''}
             onChange={handleChangeAssignee}
           >
+             <option value=''>...</option>
             {users &&
               users.map((item: User) => (
-                <option value={item.id}>{item.name}</option>
+               
+                <option value={item.id} key={item.id}>{item.name}</option>
               ))}
           </select>
         </div>
@@ -115,7 +115,6 @@ function TicketDetail() {
 
         <div className="btn_back">
           <Link to={'/'}>
-            {' '}
             <i className="fa-solid fa-arrow-left"></i>
             Back to home
           </Link>

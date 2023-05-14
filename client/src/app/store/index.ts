@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./user";
+import ticketReducer from "./ticket"
 
+//* them chữ Reducer vào
 const rootReducer = {
-    user: userReducer,
+    user: userReducer, // user: {list: , loading}
+    ticket: ticketReducer,
 };
 
 const store = configureStore({

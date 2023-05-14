@@ -1,6 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function TheHeader() {
@@ -8,10 +6,12 @@ function TheHeader() {
         <header>
         {/* <h1>pandas</h1> */}
         <nav>
-            <a >Home page</a>
-            <a>Tickets manager</a>
-            <a>Create ticket</a>
-            <a>About me</a>
+            {/* <a >Home page</a> */}
+            <Link to={'/'}>Home page</Link>
+            <Link to={'/'}>Tickets management</Link>
+            <Link to={'/contact'}>Contact</Link>
+            <Link to={'/about'}>About me</Link>
+           
         </nav>
     </header>
     );

@@ -30,10 +30,10 @@ export class TicketsController {
     if (ticket) return ticket;
     throw new NotFoundException();
   }
-
+// ramdomDelay: tạo 1 khoảng delay khi gọi API ( mô phỏng thực tế ).
   @Post()
   async createTicket(@Body() createDto: { description: string }) {
-    await randomDelay();
+    await randomDelay(); 
     return this.ticketsService.newTicket(createDto);
   }
 
@@ -73,5 +73,12 @@ export class TicketsController {
     await randomDelay();
     const success = await this.ticketsService.complete(Number(ticketId), false);
     if (!success) throw new UnprocessableEntityException();
+  }
+
+  @Delete(':id/delete')
+  @HttpCode(204)
+  async markAsDelete(@Param('id') ticketId: string) {
+    await randomDelay();
+    await this.ticketsService.delete(Number(ticketId));
   }
 }
